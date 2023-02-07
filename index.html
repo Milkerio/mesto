@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./pages/index.css">
-    <link rel="stylesheet" href="./vendor/normalize.css">
     <title>Место</title>
 </head>
 <body class="page">
@@ -25,15 +24,6 @@
             </div>
             <button class="button profile__add-button"></button>
         </section>
-        <div class="popup popup_opened">
-            <div class="popup__container">
-            <div class="popup__title">Редактировать профиль</div>
-            <input type="text" class="popup__name" value="">
-            <input type="text" class="popup__description" value="">
-            <button class="button popup__save-button">Сохранить</button>
-            <button class="button popup__exit-button" type="button"></button>
-            </div>
-        </div>
         <section class="elements">
             <div class="elements__card">
                 <img src="./images/kit9.jpg" alt="Китя" class="elements__image">
@@ -82,6 +72,15 @@
     <footer class="footer">
         <p class="footer__text">&copy; 2023 Mesto Russia</p>
     </footer>
-    <script src="./script.js"></script>
+    <div class="popup popup_opened">
+        <form class="popup__form" name="popupForm">
+            <h3 class="popup__title">Редактировать профиль</h3>
+            <input type="text" class="popup__input" value="" name="userName" id="userName" autocomplete="off">
+            <input type="text" class="popup__input" value="" name="userDescription" id="userDescription" autocomplete="off">
+            <button class="button popup__save-button" type="submit">Сохранить</button>
+            <button class="button popup__exit-button" type="reset"></button>
+        </form>
+    </div>
+    <script src="./scripts/script.js"></script>
 </body>
 </html>

@@ -1,18 +1,24 @@
-.popup__description{
+.popup__input{
     width: 83.3%;
-    margin: 30px auto 48px 36px;
     border: 0;
     border-bottom: 1px solid rgba(0,0,0,.2);
-    font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     padding: 0;
     padding-bottom: 13px;
+    margin: 0 auto 30px 36px;
+}
+.popup__input:last-of-type{
+    margin-bottom: 48px;
 }
 @media screen and (max-width: 450px){
-    .popup__description{
+    .popup__input{
         width: 238px;
-        margin: 30px auto 45px 22px;
+        margin-left: 22px;
+    }
+    .popup__input:last-of-type{
+        margin-bottom: 45px;
     }
 }
+
