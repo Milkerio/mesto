@@ -22,7 +22,7 @@
                 </div>
                 <p class="profile__description">Исследователь океана</p>
             </div>
-            <button class="button profile__add-button"></button>
+            <button class="button profile__add-button" type="button"></button>
         </section>
         <section class="elements">
             <div class="elements__card">
@@ -73,13 +73,15 @@
         <p class="footer__text">&copy; 2023 Mesto Russia</p>
     </footer>
     <div class="popup popup_opened">
-        <form class="popup__form" name="popupForm">
+        <div class="popup__container">
             <h3 class="popup__title">Редактировать профиль</h3>
-            <input type="text" class="popup__input" value="" name="userName" id="userName" autocomplete="off">
-            <input type="text" class="popup__input" value="" name="userDescription" id="userDescription" autocomplete="off">
-            <button class="button popup__save-button" type="submit">Сохранить</button>
+            <form class="popup__form" name="popupForm">
+                <input type="text" class="popup__input" value="" name="userName" id="userName" autocomplete="off">
+                <input type="text" class="popup__input" value="" name="userDescription" id="userDescription" autocomplete="off">
+                <button class="button popup__save-button" type="submit">Сохранить</button>
+            </form>
             <button class="button popup__exit-button" type="button"></button>
-        </form>
+        </div> 
     </div>
     <script src="./scripts/script.js"></script>
 </body>

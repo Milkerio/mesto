@@ -4,12 +4,12 @@ let name = document.querySelector('.profile__name');
 let description = document.querySelector('.profile__description');
 let edit_button = document.querySelector('.profile__edit-button');
 let exit_button = popup.querySelector('.popup__exit-button');
-let popup_name = popup.querySelector('#userName');
-let popup_desc = popup.querySelector('#userDescription');
+let nameInput = document.querySelector('#userName');
+let descriptionInput = document.querySelector('#userDescription');
 let save_button = popup.querySelector('.popup__save-button');
 
-popup_name.value = name.textContent;
-popup_desc.value = description.textContent;
+nameInput.value = name.textContent;
+descriptionInput.value = description.textContent;
 
 togglePopup();
 
@@ -21,8 +21,8 @@ function togglePopup() {
 }
 function saveInfo(evt) {
     evt.preventDefault()
-    name.textContent = popup_name.value;
-    description.textContent = popup_desc.value;
+    name.textContent = nameInput.value;
+    description.textContent = descriptionInput.value;
     togglePopup();
 }
 
