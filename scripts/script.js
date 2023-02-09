@@ -24,7 +24,6 @@ function saveInfo(evt) {
     description.textContent = descriptionInput.value;
     togglePopup();
 }
-
 editButton.addEventListener('click', togglePopup);
 exitButton.addEventListener('click', togglePopup);
 saveButton.addEventListener('click', saveInfo);
