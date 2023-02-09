@@ -5,3 +5,8 @@
     background-color: #fff;
     width: 430px;
 }
+@media screen and (max-width: 320px){
+    .popup__container{
+        max-width: 282px;
+    }
+}

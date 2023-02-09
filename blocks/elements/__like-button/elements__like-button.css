@@ -8,3 +8,6 @@
     padding: 0;
     cursor: pointer;
 }
+.elements__like-button:hover{
+    opacity: .5;
+}
