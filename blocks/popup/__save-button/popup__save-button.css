@@ -8,6 +8,8 @@
     border-radius: 2px;
     color: white;
     padding: 0;
+    font-size: 18px;
+    line-height: 22px;
 }
 .popup__save-button:hover{
     opacity: .8;
@@ -16,5 +18,7 @@
     .popup__save-button{
         width: 238px;
         margin-bottom: 25px;
+        font-size: 14px;
+        line-height: 17px;
     }
 }
