@@ -1,13 +1,13 @@
 /* переменные по мелочи */ 
 let popup = document.querySelector('.popup');
-let popupEdit = document.querySelector('.popup__edit_profile');
+let popupEdit = document.querySelector('.popup_edit_profile');
 let name = document.querySelector('.profile__name');
 let description = document.querySelector('.profile__description');
 let editButton = document.querySelector('.profile__edit-button');
 let addButton = document.querySelector('.profile__add-button');
 let nameInput = document.querySelector('#userName');
 let descriptionInput = document.querySelector('#userDescription');
-let popupAddElement = document.querySelector('.popup__add_element'); 
+let popupAddElement = document.querySelector('.popup_add_element'); 
 let popupImage = document.querySelector('.popup_image');
 let deleteButtons = document.querySelectorAll('.elements__delete-button');
 let elements = document.querySelector('.elements');
