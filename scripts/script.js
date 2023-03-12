@@ -18,7 +18,7 @@ const popupCardPicture = popupImage.querySelector('.popup__card-picture');
 const popupCardText = popupImage.querySelector('.popup__card-text');
 const formEdit = document.querySelector('#popup__form_edit');
 const formAdd = document.querySelector('#popup__form_add');
-
+const popups = document.querySelectorAll('.popup'); 
 
 /* карточки */
 const initialCards = [
@@ -55,9 +55,11 @@ function setProfileInfo() {
 
 function openPopup(somePopup){//открытие попапа
   somePopup.classList.add('popup_opened');
+  document.addEventListener('keydown', escapeClose);  //добавляем закрытие открытого попапа через esc
 }
 function closePopup(somePopup){//закрытие попапа
   somePopup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', escapeClose); //убираем обработчик, т.к попап закрыт
 }
 function saveInfo(evt) {//сохранение данных профиля
   evt.preventDefault();
@@ -66,14 +68,14 @@ function saveInfo(evt) {//сохранение данных профиля
   closePopup(popupEdit);
 }
 
-const addCard = (event) => {//добавляем карточку
-  event.preventDefault();
+const addCard = (evt) => {//добавляем карточку
+  evt.preventDefault();
   showCards({
     name: caption.value,
     link: pictureUrl.value,
   });
   closePopup(popupAddElement);
-  event.target.reset();
+  evt.target.reset();
 };
 
 /* заполняем страницу карточками */
@@ -114,6 +116,14 @@ initialCards.forEach((cardInfo) => {
 })
 
 
+/* закрытие по нажатию кнопки Escape*/
+const escapeClose = (evt) =>{
+  if(evt.key === 'Escape'){
+    const escPopup = document.querySelector('.popup_opened');
+    closePopup(escPopup);
+  }
+}
+
 /* обработчики */
 formEdit.addEventListener('submit', saveInfo);
 formAdd.addEventListener('submit', addCard);
@@ -128,7 +138,13 @@ exitButtons.forEach((button) => {//закрытие попапа через кр
 addButton.addEventListener('click', () => {
   openPopup(popupAddElement);
 });
-
+popups.forEach((item) => {
+  item.addEventListener('click', (evt) => {
+    if (evt.target === evt.currentTarget) {
+      closePopup(item);
+    };
+  });
+});
 
 
 
