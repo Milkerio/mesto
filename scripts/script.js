@@ -9,7 +9,7 @@ const descriptionInput = document.querySelector('#userDescription');
 const popupAddElement = document.querySelector('.popup_add_element'); 
 const popupImage = document.querySelector('.popup_image');
 const deleteButtons = document.querySelectorAll('.elements__delete-button');
-const elements = document.querySelector('.elements');
+const elementsContainer = document.querySelector('.elements');
 const elementsTemplate = document.querySelector('#elements__card').content;
 const caption = document.querySelector('#caption');
 const pictureUrl = document.querySelector('#pictureURL');
@@ -19,6 +19,7 @@ const popupCardText = popupImage.querySelector('.popup__card-text');
 const formEdit = document.querySelector('#popup__form_edit');
 const formAdd = document.querySelector('#popup__form_add');
 const popups = document.querySelectorAll('.popup'); 
+
 
 /* карточки */
 const initialCards = [
@@ -66,6 +67,8 @@ function saveInfo(evt) {//сохранение данных профиля
   name.textContent = nameInput.value;
   description.textContent = descriptionInput.value;
   closePopup(popupEdit);
+  evt.submitter.classList.add('popup__save-button_disabled')
+  evt.submitter.disabled = true; 
 }
 
 const addCard = (evt) => {//добавляем карточку
@@ -76,6 +79,8 @@ const addCard = (evt) => {//добавляем карточку
   });
   closePopup(popupAddElement);
   evt.target.reset();
+  evt.submitter.classList.add('popup__save-button_disabled')
+  evt.submitter.disabled = true; 
 };
 
 /* заполняем страницу карточками */
@@ -87,12 +92,13 @@ const generateCards = (cardInfo) => {
   const cardDelete = cardElement.querySelector(".elements__delete-button");
   cardTitle.textContent = cardInfo.name;
   cardImage.src = cardInfo.link;
+  cardImage.alt = cardInfo.name;
   
 
   function openImage() {
-    popupCardPicture.src = cardImage.src;
-    popupCardPicture.alt = cardTitle.textContent;
-    popupCardText.textContent = cardTitle.textContent; 
+    popupCardPicture.src = cardInfo.link;
+    popupCardPicture.alt = cardInfo.textContent;
+    popupCardText.textContent = cardInfo.textContent; 
     openPopup(popupImage);
   }
   const like = (evt) => {
@@ -109,7 +115,7 @@ const generateCards = (cardInfo) => {
 
 /* добавляем карточки с начала */
 const showCards = (cardInfo) => {
-  elements.prepend(generateCards(cardInfo));
+  elementsContainer.prepend(generateCards(cardInfo));
 };
 initialCards.forEach((cardInfo) => {
   showCards(cardInfo);
