@@ -1,4 +1,4 @@
-import { popupImage, openPopup } from "./script.js";
+import { popupImage, openPopup, popupPicture, popupText } from "./script.js";
 
 class Card{
     constructor(name, link, templateSelector){
@@ -24,10 +24,10 @@ class Card{
         this._card = null;
     }
     
-    _cardOpen(){
-        popupImage.querySelector('.popup__card-picture').src = this._link;
-        popupImage.querySelector('.popup__card-picture').alt = this._name;
-        popupImage.querySelector('.popup__card-text').textContent = this._name;
+    _handleCardClick(){
+        popupPicture.src = this._link;
+        popupPicture.alt = this._name;
+        popupText.textContent = this._name;
         openPopup(popupImage);
     }
     generateCard(){
@@ -48,7 +48,7 @@ class Card{
     _setEventListeners(){
         this._cardLike.addEventListener('click', () => this._cardButtonLike());
         this._cardDelete.addEventListener('click', () => this._cardButtonDelete());
-        this._cardImage.addEventListener('click', () => this._cardOpen());
+        this._cardImage.addEventListener('click', () => this._handleCardClick());
     }
 }
 export {Card};

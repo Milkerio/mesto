@@ -1,5 +1,5 @@
 import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
+import { FormValidator} from './FormValidator.js';
 
 
 /* переменные по мелочи */ 
@@ -19,8 +19,8 @@ const popupImage = document.querySelector('.popup_image');
 const formEdit = document.querySelector('#popup__form_edit');
 const formAdd = document.querySelector('#popup__form_add');
 const popups = document.querySelectorAll('.popup');
-
-
+const popupPicture = popupImage.querySelector('.popup__card-picture');
+const popupText = popupImage.querySelector('.popup__card-text');
 
 /* карточки */
 const initialCards = [
@@ -55,17 +55,17 @@ const createCard = (name, link) => {
   const cardElement = new Card(name, link, '#elements__card').generateCard();
   return cardElement;
 } 
-const addCard = (card) => {
-  elementsContainer.prepend(card);
+const addCard = (card, container) => {
+  container.prepend(card);
 }
 initialCards.forEach((item) => {
-  addCard(createCard(item.name, item.link));
+  addCard(createCard(item.name, item.link), elementsContainer);
 });
 
 
 const addNewCard = (evt) =>{
   evt.preventDefault();
-  addCard(createCard(caption.value, pictureUrl.value));
+  addCard(createCard(caption.value, pictureUrl.value), elementsContainer);
   formAdd.reset();
   closePopup(popupAddElement);
 }
@@ -87,8 +87,6 @@ function saveInfo(evt) {//сохранение данных профиля
   name.textContent = nameInput.value;
   description.textContent = descriptionInput.value;
   closePopup(popupEdit);
-  evt.submitter.classList.add('popup__save-button_disabled')
-  evt.submitter.disabled = true; 
 }
 const escapeClose = (evt) =>{
   if(evt.key === 'Escape'){
@@ -100,8 +98,9 @@ const escapeClose = (evt) =>{
 formEdit.addEventListener('submit', saveInfo);
 formAdd.addEventListener('submit', addNewCard);
 editButton.addEventListener('click', () => {
-  setProfileInfo();
   openPopup(popupEdit);
+  setProfileInfo();
+  validatorForms['form-edit'].resetValidation();
 });
 exitButtons.forEach((button) => {//закрытие попапа через крестик
   const popup = button.closest('.popup');
@@ -109,6 +108,7 @@ exitButtons.forEach((button) => {//закрытие попапа через кр
 });
 addButton.addEventListener('click', () => {
   openPopup(popupAddElement); 
+  validatorForms['form-add'].resetValidation();
 });
 popups.forEach((item) => {
   item.addEventListener('click', (evt) => {
@@ -128,13 +128,22 @@ const validationContainer = {
   buttonElementDisabled: 'popup__save-button_disabled',
 }
 
-const formList = Array.from(document.querySelectorAll(validationContainer.formSelector));
-formList.forEach((formElement) => {
-  const validateForm = new FormValidator(validationContainer, formElement);
-  validateForm.enableValidation();
-});
+const validatorForms = {};
 
- export {popupImage, openPopup};
+const enableValidation = (validationContainer) =>{
+  const formList = Array.from(document.querySelectorAll(validationContainer.formSelector));
+  formList.forEach((formElement) => {
+  const validateForm = new FormValidator(validationContainer, formElement);
+  const formName = formElement.getAttribute('name');
+  validatorForms[formName] = validateForm;
+
+  validateForm.enableValidation();
+  });
+}
+enableValidation(validationContainer);
+
+
+ export {popupImage, openPopup, popupPicture, popupText};
 
 
 
