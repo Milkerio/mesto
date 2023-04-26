@@ -1,11 +1,9 @@
-import { popupImage, openPopup, popupPicture, popupText } from "./script.js";
-
 class Card{
-    constructor(name, link, templateSelector){
-        this._link = link;
-        this._name = name;
-        this._alt = name;
+    constructor(data, handleCardClick, templateSelector){
+        this._title = data.name;
+        this._image = data.link;
         this._templateSelector = templateSelector;
+        this._handleCardClick = handleCardClick;
     }
     _getTemplate() {
         const cardElement = document
@@ -23,12 +21,8 @@ class Card{
         this._card.remove();
         this._card = null;
     }
-    
-    _handleCardClick(){
-        popupPicture.src = this._link;
-        popupPicture.alt = this._name;
-        popupText.textContent = this._name;
-        openPopup(popupImage);
+    _handleClick(){
+        this._handleCardClick();
     }
     generateCard(){
         this._card = this._getTemplate();
@@ -37,9 +31,9 @@ class Card{
         this._cardLike = this._card.querySelector('.elements__like-button');
         this._cardDelete = this._card.querySelector('.elements__delete-button');
 
-        this._cardTitle.textContent = this._name;
-        this._cardImage.src = this._link;
-        this._cardImage.alt = this._name;
+        this._cardTitle.textContent = this._title;
+        this._cardImage.src = this._image;
+        this._cardImage.alt = this._title;
         
         this._setEventListeners();
 

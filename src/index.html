@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Место</title>
 </head>
 <body class="page">
     <header class="header">
-        <img src="./images/logo.svg" alt="Логотип Mesto" class="header__logo">
+        <img src="<%=require('./images/logo.svg')%>" alt="Логотип Mesto" class="header__logo"> 
     </header>
     <main>
         <section class="profile">
-            <img src="./images/profile_pic.jpg" alt="Фото профиля" class="profile__avatar">
+            <img src="<%=require('./images/profile_pic.jpg')%>" alt="Фото профиля" class="profile__avatar">
             <div class="profile__info">
                 <div class="profile__container">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -32,9 +31,9 @@
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
             <form class="popup__form" name="form-edit" id="popup__form_edit" novalidate>
-                <input type="text" class="popup__input" value="" name="userName" id="userName" autocomplete="off" minlength="2" maxlength="40" required placeholder="Имя">
+                <input type="text" class="popup__input" value="" name="name" id="userName" autocomplete="off" minlength="2" maxlength="40" required placeholder="Имя">
                 <span class="popup__error" id="userName-error"></span>
-                <input type="text" class="popup__input" value="" name="userDescription" id="userDescription" autocomplete="off" minlength="2" maxlength="200" required placeholder="О себе">
+                <input type="text" class="popup__input" value="" name="about" id="userDescription" autocomplete="off" minlength="2" maxlength="200" required placeholder="О себе">
                 <span class="popup__error" id="userDescription-error"></span>
                 <button class="button popup__save-button" type="submit">Сохранить</button>
             </form>
@@ -71,6 +70,5 @@
             </div>
         </article>
     </template>
-    <script type="module" src="./scripts/script.js"></script>
 </body>
 </html>
