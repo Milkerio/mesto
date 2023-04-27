@@ -1,13 +1,13 @@
-import { Card } from './components/Card.js';
-import { FormValidator} from './components/FormValidator.js';
-import { initialCards } from './utils/utils.js';
+import { Card } from '../components/Card.js';
+import { FormValidator} from '../components/FormValidator.js';
+import { initialCards } from '../utils/utils.js';
 
-import { PopupWithImage } from './components/PopupWithImage.js';
-import { PopupWithForm } from './components/PopupWithForm.js';
-import { Section } from './components/Section.js';
-import { UserInfo } from './components/UserInfo.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { Section } from '../components/Section.js';
+import { UserInfo } from '../components/UserInfo.js';
 
-import './pages/index.css';
+import '../pages/index.css';
 
 /* переменные */ 
 const editButton = document.querySelector('.profile__edit-button');
@@ -23,8 +23,8 @@ const pictureUrl = document.querySelector('#pictureURL');
 const createCard = (item) => {
   const card = new Card(
     item,
-    () => {
-      popupWithPicture.open(item);
+    cardData => {
+      popupWithPicture.open(cardData);
     },
     '#elements__card');
     const cardElement = card.generateCard();
@@ -53,10 +53,10 @@ popupWithProfile.setEventListeners();
 
 /* попап добавления картинки */
 const popupWithAdd = new PopupWithForm('.popup_add_element',{
-  submitCallback: () => {
+  submitCallback: (item) => {
     const cardInfo = {
-      name: caption.value,
-      link: pictureUrl.value
+      name: item.caption,
+      link: item.pictureURL
     }
     cardsContainer.prependItem(createCard(cardInfo));  
     popupWithAdd.close();
@@ -103,22 +103,12 @@ const validationContainer = {
 const validatorForms = {};
 
 const enableValidation = (validationContainer) =>{
-  const formList = Array.from(document.querySelectorAll(validationContainer.formSelector));
-  formList.forEach((formElement) => {
-  const validateForm = new FormValidator(validationContainer, formElement);
-  const formName = formElement.getAttribute('name');
-  validatorForms[formName] = validateForm;
-
-  validateForm.enableValidation();
+    const formList = Array.from(document.querySelectorAll(validationContainer.formSelector));
+    formList.forEach((formElement) => {
+      const validateForm = new FormValidator(validationContainer, formElement);
+      const formName = formElement.getAttribute('name');
+      validatorForms[formName] = validateForm;
+      validateForm.enableValidation();
   });
 }
 enableValidation(validationContainer);
-
-
-
-
-
-
-
-
-

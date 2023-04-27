@@ -22,7 +22,7 @@ class Card{
         this._card = null;
     }
     _handleClick(){
-        this._handleCardClick();
+        this._handleCardClick({name: this._title, link: this._image});
     }
     generateCard(){
         this._card = this._getTemplate();
@@ -42,7 +42,7 @@ class Card{
     _setEventListeners(){
         this._cardLike.addEventListener('click', () => this._cardButtonLike());
         this._cardDelete.addEventListener('click', () => this._cardButtonDelete());
-        this._cardImage.addEventListener('click', () => this._handleCardClick());
+        this._cardImage.addEventListener('click', () => this._handleClick());
     }
 }
 export {Card};
