@@ -3,7 +3,7 @@ class Section{
         this._renderer = renderer;
         this._container = document.querySelector(containerSelector);
     }
-    renderItem(items, user){
+    renderItems(items, user){
         items.forEach(item => {
             this._renderer(item, user);
         })

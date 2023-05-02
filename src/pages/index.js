@@ -33,7 +33,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   userId = user._id;
   userInfo.setUserInfo(user);
   userInfo.setUserAvatar(user);
-  cardsContainer.renderItem(card, userId)
+  cardsContainer.renderItems(card, userId)
 })
 .catch(err => console.log(err))
 
@@ -45,7 +45,6 @@ const createCard = (data, userId) => {
   },
   handleCardDelete: (cardId, cardElement) => {
     popupWithDel.open(cardId, cardElement)
-    .catch(err => console.log(err))
   },
   handleCardLike: (cardId) => {
     api.putLike(cardId)
