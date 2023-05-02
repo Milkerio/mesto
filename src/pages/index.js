@@ -29,11 +29,11 @@ const api = new Api({
 });
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
-.then(([User, Card]) => {
-  userId = User._id;
-  userInfo.setUserInfo(User);
-  userInfo.setUserAvatar(User);
-  cardsContainer.renderItem(Card, userId)
+.then(([user, card]) => {
+  userId = user._id;
+  userInfo.setUserInfo(user);
+  userInfo.setUserAvatar(user);
+  cardsContainer.renderItem(card, userId)
 })
 .catch(err => console.log(err))
 
